@@ -4,7 +4,6 @@ export type Order = {
   id: number;
   name: string;
   price: number;
-  type: 'normal' | 'vip';
   status: Status;
   details: OrderItem[];
 };
@@ -17,16 +16,10 @@ export type OrderItem = {
   category: 'food' | 'drink' | 'other';
 };
 
-export type MenuItem = {
-  id: number;
-  name: string;
-  price: number;
-  category: 'food' | 'drink' | 'other';
-};
+export type MenuItem = Omit<OrderItem, 'quantity'>;
 
-
-export type Customer = {
+export type Queue = {
   id: number;
-  type: 'normal' | 'vip';
-  order: Order;
+  orders: Order[];
+  vip: boolean;
 };

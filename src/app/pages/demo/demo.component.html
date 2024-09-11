@@ -1,0 +1,7 @@
+<aside>
+  <app-sidebar></app-sidebar>
+</aside>
+<main>
+  <router-outlet></router-outlet>
+</main>
+@if (!isManager) {<app-drawer></app-drawer>}

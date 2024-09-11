@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  padding:0 0.5rem;
+  align-items: center;
+
+  img {
+    width: 100px;
+  }
+
+  section {
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 1rem;
+  }
+}

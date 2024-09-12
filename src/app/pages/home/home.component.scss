@@ -1,3 +1,5 @@
+@use '../../styles';
+
 :host {
   height: 100vh;
   display: flex;
@@ -28,18 +30,7 @@ img {
   gap: 1rem;
 
   button {
-    width: 150px;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
-
-    &:hover {
-      transform: scale(1.1);
-    }
+    @include styles.btn;
   }
 }
 

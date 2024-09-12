@@ -1,1 +1,38 @@
-<p>customer works!</p>
+<header>
+  <app-search-bar></app-search-bar>
+</header>
+<main>
+  @switch (menuService.menuSection) {
+    @case ('food') {
+      <section>
+        @for (menu of foodMenu; track menu.id) {
+          <app-menu-card
+            (click)="addToCart(menu)"
+            [menu]="menu"
+          ></app-menu-card>
+        }
+      </section>
+    }
+    @case ('drink') {
+      <section>
+        @for (menu of drinksMenu; track menu.id) {
+          <app-menu-card
+            (click)="addToCart(menu)"
+            [menu]="menu"
+          ></app-menu-card>
+        }
+      </section>
+    }
+    @case ('all') {
+      <section>
+        @for (menu of allMenu; track menu.id) {
+          <app-menu-card
+            (click)="addToCart(menu)"
+            [menu]="menu"
+          ></app-menu-card>
+        }
+    </section>
+    }
+  }
+
+</main>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart-card',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './cart-card.component.scss'
 })
 export class CartCardComponent {
-
+  cart = inject(CartService);
 }

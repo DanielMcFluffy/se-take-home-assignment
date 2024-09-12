@@ -1,3 +1,5 @@
+@use '../../styles';
+
 :host {
   display: flex;
   width: 100%;
@@ -7,4 +9,16 @@
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   height: 120px;
+
+  .drawer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+
+    button {
+      @include styles.btn;
+      width: max-content;
+    }
+  }
 }

@@ -16,7 +16,12 @@ export type OrderItem = {
   category: 'food' | 'drink' | 'other';
 };
 
-export type MenuItem = Omit<OrderItem, 'quantity'>;
+export type MenuItem = Omit<OrderItem, 'quantity'> & {image: string};
+
+export type Bot = {
+  id: number;
+  operating: boolean;
+};
 
 export type Queue = {
   id: number;

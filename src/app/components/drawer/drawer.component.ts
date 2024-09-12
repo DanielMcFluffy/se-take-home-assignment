@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CartCardComponent } from '../cart-card/cart-card.component';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-drawer',
@@ -9,5 +10,9 @@ import { CartCardComponent } from '../cart-card/cart-card.component';
   styleUrl: './drawer.component.scss'
 })
 export class DrawerComponent {
+  cart = inject(CartService);
 
+  addToCart() {
+    this.cart.clearCart();
+  }
 }

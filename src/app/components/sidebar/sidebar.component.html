@@ -1,4 +1,6 @@
 <img src="logo.png" alt="logo">
 <section>
-  options
+  @for (item of options; track $index) {
+    <button [ngClass]="item.value === menuService.menuSection ? 'active' : ''" (click)="setMenuSection(item.value)">{{item.label}}</button>
+  }
 </section>

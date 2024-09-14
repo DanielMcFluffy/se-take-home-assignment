@@ -2,6 +2,7 @@ import { AfterViewInit, Component, inject, viewChild } from '@angular/core';
 import { SearchService } from '../../services/search.service';
 import { FormsModule, NgModel } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-search-bar',
@@ -19,6 +20,7 @@ export class SearchBarComponent implements AfterViewInit  {
     this.searchInput().valueChanges?.pipe(
       debounceTime(300),
       distinctUntilChanged(),
+      takeUntilDestroyed(),
     ).subscribe(x => this.searchService.search(x));
   }
 

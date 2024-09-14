@@ -1,12 +1,10 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { OrderService } from './order.service';
+import { Injectable, signal } from '@angular/core';
 import { MenuItem, OrderItem } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService { 
-  orderService = inject(OrderService);
 
   cart = signal<OrderItem[]>([]);
 

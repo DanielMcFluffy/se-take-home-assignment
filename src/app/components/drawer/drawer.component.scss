@@ -6,9 +6,10 @@
   background-color: var(--primary-yellow);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   justify-content: center;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
   height: 120px;
+  @media (width < 600px) {
+    padding: 0 0 2.5rem 0;
+  }
 
   .drawer {
     display: flex;
@@ -19,6 +20,10 @@
     button {
       @include styles.btn;
       width: max-content;
+
+      @media (width < 600px) {
+        border-radius: unset;
+      }
     }
   }
 }

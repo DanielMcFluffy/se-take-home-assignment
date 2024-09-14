@@ -8,17 +8,9 @@
 
   main {
     background-color: #fff;
-    height: 590px;
     width: 100%;
     padding: 1rem;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
-  }
-
-  app-drawer {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
   }
 }

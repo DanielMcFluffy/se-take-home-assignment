@@ -6,11 +6,15 @@ import { Injectable } from '@angular/core';
 })
 export class MenuService {
 
-  menuSection: 'food' | 'drink' | 'all' = 'all';
+  menuSection: 'food' | 'drink' | 'all' | 'empty' = 'all';
 
-  constructor() { }
+  constructor() { 
+    if (window.location.href.includes('orders')) {
+      this.menuSection = 'empty';
+    }
+  }
 
-  setMenuSection(section: 'food' | 'drink' | 'all') {
+  setMenuSection(section: 'food' | 'drink' | 'all' | 'empty') {
     this.menuSection = section;
   }
 

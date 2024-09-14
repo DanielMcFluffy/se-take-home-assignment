@@ -3,15 +3,43 @@
 :host {
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: 80vh;
   padding:0 0.5rem;
   align-items: center;
+  justify-content: space-between;
 
   img {
+    align-self: center;
     width: 100px;
+    cursor: pointer;
   }
 
-  section {
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    section {
+      padding: 1rem;
+      background-color: #fff;
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+  
+      button {
+        @include styles.btn;
+        width: auto;
+  
+        &.active {
+          background-color: var(--primary-black);
+          color: #fff;
+        }
+      }
+    }
+  } 
+
+  div + section {
     padding: 1rem;
     background-color: #fff;
     border-radius: 1rem;

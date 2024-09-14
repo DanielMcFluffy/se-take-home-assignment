@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
 import { NgClass } from '@angular/common';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 export type MenuButton = {
   label: string;
@@ -10,7 +11,7 @@ export type MenuButton = {
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, RouterLink, RouterLinkActive],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })
@@ -20,11 +21,21 @@ export class SidebarComponent {
     { label: 'Food', value: 'food' },
     { label: 'Drinks', value: 'drink' },
   ]
-
+  router = inject(Router);
   menuService = inject(MenuService);
 
   setMenuSection(section: 'food' | 'drink' | 'all') {
     this.menuService.setMenuSection(section);
+  }
+
+  navigateToOrder() {
+    if (window.location.href.includes('customer')) {
+      this.menuService.setMenuSection('empty');
+    }
+  }
+
+  clearMenu() {
+    this.menuService.setMenuSection('empty');
   }
 
 }

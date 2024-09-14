@@ -5,6 +5,7 @@ import { MenuCardComponent } from '../../components/menu-card/menu-card.componen
 import { MenuItem } from '../../models';
 import { SearchService } from '../../services/search.service';
 import { CartService } from '../../services/cart.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-customer',
@@ -19,15 +20,15 @@ export class CustomerComponent {
   cart = inject(CartService);
   
   constructor() {
-    this.searchService.searchTerm$.subscribe(x => this.allMenu = 
+    this.searchService.searchTerm$.pipe(takeUntilDestroyed()).subscribe(x => this.allMenu = 
       x ? this.allMenu.filter(y => y.name.toLowerCase().includes(x.toLowerCase())) 
       : ALL_MENU);
 
-    this.searchService.searchTerm$.subscribe(x => this.foodMenu = 
+    this.searchService.searchTerm$.pipe(takeUntilDestroyed()).subscribe(x => this.foodMenu = 
       x ? this.foodMenu.filter(y => y.name.toLowerCase().includes(x.toLowerCase())) 
       : FOOD_MENU);
 
-    this.searchService.searchTerm$.subscribe(x => this.drinksMenu = 
+    this.searchService.searchTerm$.pipe(takeUntilDestroyed()).subscribe(x => this.drinksMenu = 
       x ? this.drinksMenu.filter(y => y.name.toLowerCase().includes(x.toLowerCase())) 
       : DRINKS_MENU);
   }

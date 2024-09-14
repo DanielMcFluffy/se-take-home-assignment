@@ -21,6 +21,7 @@ export type MenuItem = Omit<OrderItem, 'quantity'> & {image: string};
 export type Bot = {
   id: number;
   operating: boolean;
+  order: Queue[];
 };
 
 export type Queue = {

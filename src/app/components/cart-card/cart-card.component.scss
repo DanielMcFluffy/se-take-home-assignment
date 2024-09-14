@@ -1,5 +1,9 @@
 :host {
   background-color: #fff;
-  padding: 1rem;
-  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+
+  @media (max-width: 600px) {
+    border-radius: unset;
+  }
 }

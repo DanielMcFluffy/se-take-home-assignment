@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, skip, startWith, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, skip, startWith } from 'rxjs';
 import { Queue } from '../models';
 import { toSignal } from '@angular/core/rxjs-interop';
 

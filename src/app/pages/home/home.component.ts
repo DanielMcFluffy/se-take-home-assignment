@@ -13,6 +13,8 @@ export class HomeComponent {
   
   menuService = inject(MenuService);
 
+  title = 'Welcome to McDonald\'s!';
+
   showMenu() {
     this.menuService.setMenuSection('all');
   }

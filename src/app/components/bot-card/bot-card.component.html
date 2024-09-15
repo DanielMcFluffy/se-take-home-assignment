@@ -4,7 +4,7 @@
   @if (bot().queue?.timeLeft) {
   Fulfilling:
   <ul>
-      <li>Order no: {{bot().id}}</li>
+      <li>Order no: {{bot().queue?.id}}</li>
       <li>ETA: {{bot().queue?.timeLeft}}</li>
     </ul>
   } @else {

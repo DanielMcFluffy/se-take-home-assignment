@@ -4,7 +4,6 @@ import { MenuService } from '../../services/base/menu.service';
 import { MenuCardComponent } from '../../components/menu-card/menu-card.component';
 import { MenuItem } from '../../models';
 import { SearchService } from '../../services/base/search.service';
-import { CartService } from '../../services/base/cart.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({

@@ -19,7 +19,7 @@
       gap: 1rem;
 
       @media (width < 850px) {
-        grid-template-columns: repeat(2, minmax(150px, 300px));
+        grid-template-columns: repeat(1, minmax(100px, 300px));
       }
     }
   }

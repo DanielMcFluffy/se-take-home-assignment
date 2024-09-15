@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MenuSection } from '../../components/sidebar/sidebar.component';
 
 
 @Injectable({
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class MenuService {
 
-  menuSection: 'food' | 'drink' | 'all' | 'empty' = 'all';
+  menuSection: MenuSection = 'all';
 
   constructor() { 
     if (window.location.href.includes('orders')) {
@@ -14,7 +15,7 @@ export class MenuService {
     }
   }
 
-  setMenuSection(section: 'food' | 'drink' | 'all' | 'empty') {
+  setMenuSection(section: MenuSection) {
     this.menuSection = section;
   }
 

@@ -7,7 +7,6 @@
       <section>
         @for (menu of foodMenu; track menu.id) {
           <app-menu-card
-            (click)="addToCart(menu)"
             [menu]="menu"
           ></app-menu-card>
         }
@@ -17,7 +16,6 @@
       <section>
         @for (menu of drinksMenu; track menu.id) {
           <app-menu-card
-            (click)="addToCart(menu)"
             [menu]="menu"
           ></app-menu-card>
         }
@@ -27,7 +25,6 @@
       <section>
         @for (menu of allMenu; track menu.id) {
           <app-menu-card
-            (click)="addToCart(menu)"
             [menu]="menu"
           ></app-menu-card>
         }

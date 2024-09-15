@@ -1,0 +1,12 @@
+<div>Bot no. {{bot().id}}</div>
+<div>Status: {{bot().queue?.timeLeft ? 'busy' : 'idle'}}</div>
+<div>
+  @if (bot().queue?.timeLeft) {
+  Fulfilling:
+  <ul>
+      <li>Order no: {{bot().id}}</li>
+      <li>ETA: {{bot().queue?.timeLeft}}</li>
+    </ul>
+  } @else {
+  } 
+</div>

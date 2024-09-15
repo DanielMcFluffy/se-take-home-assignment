@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { MenuService } from '../../services/menu.service';
+import { MenuService } from '../../services/base/menu.service';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +10,7 @@ import { MenuService } from '../../services/menu.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  
   menuService = inject(MenuService);
 
   showMenu() {

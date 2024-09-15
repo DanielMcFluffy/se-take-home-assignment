@@ -1,12 +1,18 @@
 import { Component, inject } from '@angular/core';
-import { MenuService } from '../../services/menu.service';
+import { MenuService } from '../../services/base/menu.service';
 import { NgClass } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../services/base/auth.service';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { filter } from 'rxjs';
+import { BotService } from '../../services/bot.service';
 
 export type MenuButton = {
   label: string;
-  value: 'food' | 'drink' | 'all';
+  value: MenuSection;
 }
+
+export type MenuSection = 'food' | 'drink' | 'all' | 'empty';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,15 +22,24 @@ export type MenuButton = {
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
+
+  router = inject(Router);
+  menuService = inject(MenuService);
+  authService = inject(AuthService);
+  botService = inject(BotService);
+
+  isManager = toSignal(
+    toObservable(this.authService.isManager).pipe(
+    filter(() => window.location.href.includes('manager'))
+  )
+);
+
   options: MenuButton[] = [
     { label: 'All', value: 'all' },
     { label: 'Food', value: 'food' },
-    { label: 'Drinks', value: 'drink' },
-  ]
-  router = inject(Router);
-  menuService = inject(MenuService);
-
-  setMenuSection(section: 'food' | 'drink' | 'all') {
+    { label: 'Drinks', value: 'drink' }
+  ] 
+  setMenuSection(section: MenuSection) {
     this.menuService.setMenuSection(section);
   }
 
@@ -36,6 +51,14 @@ export class SidebarComponent {
 
   clearMenu() {
     this.menuService.setMenuSection('empty');
+  }
+
+  addBot() {
+    this.botService.addBot();
+  }
+
+  removeBot() {
+    this.botService.removeBot();
   }
 
 }

@@ -3,8 +3,20 @@
       Pending Orders
   </header>
   <div>
-    <app-order-card></app-order-card>
-    <app-order-card></app-order-card>
+    @for (q of pendingQueues(); track q.id) {
+      <app-order-card [queue]="q"></app-order-card>
+    }
+  </div>
+</section>
+
+<section>
+  <header>
+      Ongoing Orders
+  </header>
+  <div>
+    @for (q of ongoingQueues(); track q.id) {
+      <app-order-card [queue]="q"></app-order-card>
+    }
   </div>
 </section>
   
@@ -13,8 +25,8 @@
       Completed Orders
   </header>
   <div>
-    <app-order-card></app-order-card>
-    <app-order-card></app-order-card>    <app-order-card></app-order-card>
-    <app-order-card></app-order-card>    <app-order-card></app-order-card>
+      @for (q of processedQueues(); track q.id) {
+        <app-order-card [queue]="q"></app-order-card>
+      }
   </div>
 </section>

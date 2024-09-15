@@ -1,7 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { DrawerComponent } from './components/drawer/drawer.component';
-import { filter } from 'rxjs';
+import { AuthService } from './services/base/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +11,7 @@ import { filter } from 'rxjs';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'take-home';
-  router = inject(Router);  
-  constructor() {
-    this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd),
-    ).subscribe(() => this.isManager.set(window.location.href.includes('manager') || window.location.href.includes('home') || window.location.href.includes('orders')));
-  }
 
-  isManager = signal(false);
+  authService = inject(AuthService);
+  isManager = this.authService.isManager;
 }

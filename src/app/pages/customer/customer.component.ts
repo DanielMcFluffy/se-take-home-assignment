@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
-import { MenuService } from '../../services/menu.service';
+import { MenuService } from '../../services/base/menu.service';
 import { MenuCardComponent } from '../../components/menu-card/menu-card.component';
 import { MenuItem } from '../../models';
-import { SearchService } from '../../services/search.service';
-import { CartService } from '../../services/cart.service';
+import { SearchService } from '../../services/base/search.service';
+import { CartService } from '../../services/base/cart.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -17,7 +17,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class CustomerComponent {
   menuService = inject(MenuService);
   searchService = inject(SearchService);
-  cart = inject(CartService);
+
+  allMenu: MenuItem[] = ALL_MENU;
+  foodMenu: MenuItem[] = FOOD_MENU; 
+  drinksMenu: MenuItem[] = DRINKS_MENU;
   
   constructor() {
     this.searchService.searchTerm$.pipe(takeUntilDestroyed()).subscribe(x => this.allMenu = 
@@ -31,15 +34,6 @@ export class CustomerComponent {
     this.searchService.searchTerm$.pipe(takeUntilDestroyed()).subscribe(x => this.drinksMenu = 
       x ? this.drinksMenu.filter(y => y.name.toLowerCase().includes(x.toLowerCase())) 
       : DRINKS_MENU);
-  }
-
-
-  allMenu: MenuItem[] = ALL_MENU;
-  foodMenu: MenuItem[] = FOOD_MENU; 
-  drinksMenu: MenuItem[] = DRINKS_MENU;
-
-  addToCart(item: MenuItem) {
-    this.cart.addToCart(item);
   }
 }
 

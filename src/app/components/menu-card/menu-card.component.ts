@@ -1,6 +1,6 @@
 import { Component, inject, input } from '@angular/core';
 import { MenuItem } from '../../models';
-import { CartService } from '../../services/cart.service';
+import { CartService } from '../../services/base/cart.service';
 
 @Component({
   selector: 'app-menu-card',
@@ -11,7 +11,11 @@ import { CartService } from '../../services/cart.service';
 })
 export class MenuCardComponent {
 
+  cartService = inject(CartService);
   menu = input.required<MenuItem>();
 
+  addToCart() {
+    this.cartService.addToCart(this.menu());
+  }
 
 }

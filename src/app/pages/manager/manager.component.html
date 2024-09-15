@@ -1,1 +1,8 @@
-<p>manager works!</p>
+<div>Bot Overview</div>
+<div class="overview">
+  @for (b of bots; track b.id) {
+    <app-bot-card
+      [bot]="b"
+    ></app-bot-card>
+  }
+</div>

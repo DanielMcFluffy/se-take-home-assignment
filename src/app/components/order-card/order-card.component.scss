@@ -1,5 +1,24 @@
+@use '../../styles';
+
 :host {
   padding: 1rem;
   background-color: var(--primary-yellow);
-  border-radius: 0.5rem
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+
+  button {
+    @include styles.btn;
+    position: absolute;
+    top: 0;
+    right: 0;
+    outline: none;
+    border: none;
+    width: max-content;
+    padding: 0.3rem 0.5rem;
+  }
+
 }

@@ -1,1 +1,10 @@
-<span># number</span>
+@if (!isOngoing()) {
+  <button (click)="completedQueue ? popCompleteQueue() : popQueue()">x</button>
+}
+<div># {{queue().id}}</div>
+<div>{{queue().vip ? 'VIP' : 'Normal'}}</div>
+<div>
+  @if (queue().status === '[ONGOING]') {
+    ETA: {{queue().timeLeft}}
+  }
+</div>

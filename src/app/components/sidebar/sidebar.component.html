@@ -3,11 +3,16 @@
   [routerLink]="'home'"
   (click)="clearMenu()">
   <section>
-    @for (item of options; track $index) {
-      <button [routerLink]="'customer'" [ngClass]="item.value === menuService.menuSection ? 'active' : ''" (click)="setMenuSection(item.value)">{{item.label}}</button>
+    @if (!isManager()) {
+      @for (item of options; track $index) {
+        <button [routerLink]="'customer'" [ngClass]="item.value === menuService.menuSection ? 'active' : ''" (click)="setMenuSection(item.value)">{{item.label}}</button>
+      }
+    } @else {
+      <button (click)="addBot()">+Bot</button>
+      <button (click)="removeBot()">-Bot</button>
+      <button [routerLink]="'manager'" [routerLinkActive]="'active'">Overview</button>
     }
   </section>
-  <!-- bot control buttons for managers -->
 </div>
 <section>
   <button (click)="navigateToOrder()" [routerLinkActive]="'active'" [routerLink]="'orders'">Orders</button>

@@ -7,10 +7,10 @@ import { shareReplay } from 'rxjs';
 })
 export class SearchService {
 
-  constructor() { }
-
   searchTerm = signal<string>('');
   searchTerm$ = toObservable(this.searchTerm).pipe(shareReplay(1));
+  
+  constructor() { }
 
   search(term: string) {
     this.searchTerm.set(term);

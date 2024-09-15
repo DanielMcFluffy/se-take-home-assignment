@@ -1,11 +1,13 @@
-## FeedMe Software Engineer Take Home Assignment
-Below is a take home assignment before the interview of the position. You are required to
-1. Understand the situation and use case. You may contact the interviewer for further clarification.
-2. Fork this repo and implement the requirement with your most familiar tools.
-3. Complete the requirement and perform your own testing.
-4. Provide documentation for the any part that you think is needed.
-5. Commit into your own github and share your repo with the interviewer.
-6. Bring the source code and functioning prototype to the interview session.
+## McDonald's Bot Queue System
+
+### Screenshots
+
+- Home Page![Home-page](./public/homePage.png)
+
+- Customers Page![Customers-page](./public/demo.png)
+
+- Manageres Page![Managers-page](./public/manager.png)
+
 
 ### Situation
 McDonald is transforming their business during COVID-19. They wish to build the automated cooking bots to reduce workforce and increase their efficiency. As one of the software engineer in the project. You task is to create an order controller which handle the order control flow. 

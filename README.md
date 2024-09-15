@@ -6,7 +6,7 @@
 
 - Customers Page![Customers-page](./public/demo.png)
 
-- Manageres Page![Managers-page](./public/manager.png)
+- Managers Page![Managers-page](./public/manager.png)
 
 
 ### Situation
@@ -31,10 +31,10 @@ As below is part of the user story:
 ### Functioning Prototype
 You may demostrate your final funtioning prototype with **one and only one** of the following method:
 - CLI application
-- UI application
+- UI application ✓
 - E2E test case
 
 ### Tips on completing this task
 - Testing, testing and testing. Make sure the prototype is functioning and meeting all the requirements.
-- Do not over engineering. Try to scope your working hour within 3 hours (1 hour per day). You may document all the optimization or technology concern that you think good to bring in the solution.
-- Complete the implementation as clean as possible, clean code is a strong plus point, do not bring in all the fancy tech stuff.
+- Do not over engineering. Try to scope your working hour within 3 hours (1 hour per day). You may document all the optimization or technology concern that you think good to bring in the solution. 
+- Complete the implementation as clean as possible, clean code is a strong plus point, do not bring in all the fancy tech stuff. 

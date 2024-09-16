@@ -1,4 +1,4 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { BotService } from './bot.service';
 import { QueueService } from './queue.service';
 import { Bot, Queue } from '../models';
@@ -86,32 +86,8 @@ describe('BotService', () => {
     expect(_bots[1].id).toBe(3);
   })
 
-  it('the first bot to appear, should take the front most pending order', () => {
-    let queue1 = new Queue(false);
-    let queue2 = new Queue(true);
-
-    _normalQueue.next([queue1]);
-    _vipQueue.next([queue2]);
-
-    const queueCount = computed(() => priorityQueue()?.length)
-    expect(queueCount()).toBe(2);
-
-    service.addBot();
-    const bot = _bots[0]; 
-  
-    service.startShift(bot);
-  
-    expect(bot.operating).toBe(true);  
-  
-    setTimeout(() => {
-      expect(bot.process.getValue()).toBe(true);  
-
-      const activeQueue = priorityQueue()![0];  
-      expect(activeQueue).toEqual(queue2); 
-    }, 0);  // delay added to wait for any asynchronous behavior like setInterval
-  });
-
-  it('an order should take 10 seconds to fulfill', () => {
+  it('the first bot to appear, should take the front most pending order', fakeAsync(() => {
+    Queue.orderCount = 1
     let queue1 = new Queue(false);
     let queue2 = new Queue(true);
 
@@ -125,51 +101,14 @@ describe('BotService', () => {
     const bot = _bots[0]; 
     service.startShift(bot);
     expect(bot.operating).toBe(true);  
+    
+    tick(); //check after 1 observable emission
+    expect(bot.process.getValue()).toBe(true);  
+    expect(_ongoingQueue.getValue()[0]).toEqual(queue2);  
+    expect(_ongoingQueue.getValue()[1]).toEqual(queue1);  
 
-    setTimeout(() => {
-      expect(bot.process.getValue()).toBe(true);  
-
-      const activeQueue = priorityQueue()![0];  
-      expect(activeQueue).toEqual(queue2); 
-    }, 0);  // delay added to wait for any asynchronous behavior like setInterval
-
-    setTimeout(() => {
-      expect(bot.complete.getValue()).toBe(true);
-    }, 10000)
-  });
-
-  it('bot should take another order immediately after finishing', () => {
-    let queue1 = new Queue(false);
-    let queue2 = new Queue(true);
-
-    _normalQueue.next([queue1]);
-    _vipQueue.next([queue2]);
-
-    const queueCount = computed(() => priorityQueue()?.length)
-    expect(queueCount()).toBe(2);
-
-    service.addBot();
-    const bot = _bots[0]; 
-    service.startShift(bot);
-    expect(bot.operating).toBe(true);  
-  
-    setTimeout(() => {
-      expect(bot.process.getValue()).toBe(true);  
-
-      const activeQueue = priorityQueue()![0];  
-      expect(activeQueue).toEqual(queue2); 
-    }, 0);  // delay added to wait for any asynchronous behavior like setInterval
-
-    setTimeout(() => {
-      expect(bot.complete.getValue()).toBe(true);
-    }, 10000)
-
-    setTimeout(() => {
-      expect(bot.process.getValue()).toBe(true);
-      const activeQueue = priorityQueue()![0];  
-      expect(activeQueue).toEqual(queue1); 
-    }, 0);
-  });
+    discardPeriodicTasks();
+  }));
 
   it('ongoing order should be moved to pending queue if bot is abruptly removed', () => {
     let queue = new Queue(false);

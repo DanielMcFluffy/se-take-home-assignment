@@ -1,6 +1,6 @@
 import { computed, inject, Injectable } from '@angular/core';
 import { Bot } from '../models';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, interval } from 'rxjs';
 import { QueueService } from './queue.service';
 
 @Injectable({
@@ -43,16 +43,15 @@ export class BotService {
 
       if (isProcessing) return
 
-      // continuously search for queues
-      let interval = setInterval(() => {
+      //search for queues
+      let queueSearch = interval().subscribe(() => {
         if (bot.operating) {
-          let order = this.queueService.processQueue()
-          if (!order) return
-
-          bot.process.next(true)
-          bot.processQueue(order)
+          let queue = this.queueService.processQueue();
+          if (!queue) return;
+          bot.process.next(true);
+          bot.processQueue(queue);
         }
-        clearInterval(interval)
+        queueSearch.unsubscribe();
       })
     })
   }

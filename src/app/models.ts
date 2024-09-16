@@ -1,4 +1,4 @@
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, interval } from "rxjs";
 
 export type Status = 'pending' | 'complete' | 'error';
 
@@ -72,14 +72,14 @@ export class Bot {
         this.queue = queue
         this.queue.setOngoingStatus()
 
-        let interval = setInterval(() => {
+        let queueDurationInterval = interval(1000).subscribe(() => {
             if (this.queue) {
                 this.queue.timeLeft--;
-                if (this.queue.timeLeft !== 0) return
-                this.complete.next(true)
+                if (this.queue.timeLeft !== 0) return;
+                this.complete.next(true);
             }
-            clearInterval(interval)
-        }, 1000)
+            queueDurationInterval.unsubscribe();
+        })
     }
 
     cancelProcessingQueue(): Queue | null {

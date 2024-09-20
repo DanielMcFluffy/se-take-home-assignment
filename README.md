@@ -1,5 +1,25 @@
 ## McDonald's Bot Queue System
 
+> Try the live [demo here](http://rxjs.ng-book.com)
+
+## Quick start
+
+```bash
+# clone the repo
+git clone https://github.com/DanielMcFluffy/se-take-home-assignment
+
+# change into the repo directory
+cd se-take-home-assignment
+
+# install
+npm install
+
+# run
+npm start
+```
+
+Then visit [http://localhost:4200](http://localhost:4200) in your browser.
+
 ### Screenshots
 
 - Home Page![Home-page](./public/homePage.png)

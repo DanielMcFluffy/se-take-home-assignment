@@ -8,6 +8,7 @@
     [routerLink]="['/demo', 'customer']"
   >Customers</button>
   <button
-  [routerLink]="['/demo', 'manager']"
+    (click)="authService.enableManagerMode()"
+    [routerLink]="['/demo', 'manager']"
   >Manager</button>
 </section>

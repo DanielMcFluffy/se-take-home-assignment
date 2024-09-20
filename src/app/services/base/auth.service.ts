@@ -1,24 +1,20 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  router = inject(Router);
+
+// just a way to show the app-drawer if you're a customer
+// ideally do it in a router event through route-guard with guardchecknavigation event
   isManager = signal(false);
 
-  constructor() {
-    this.router.events.pipe(
-      filter(x => x instanceof NavigationEnd),
-      takeUntilDestroyed()
-    ).subscribe(() => 
-      this.isManager.set(
-        window.location.href.includes('manager') ||
-        window.location.href.includes('home') ||
-        window.location.href.includes('orders')));
+  enableManagerMode() {
+    this.isManager.set(true);
+  }
+
+  disableManagerMode() {
+    this.isManager.set(false);
   }
 }

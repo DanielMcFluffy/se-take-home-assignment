@@ -28,11 +28,7 @@ export class SidebarComponent {
   authService = inject(AuthService);
   botService = inject(BotService);
 
-  isManager = toSignal(
-    toObservable(this.authService.isManager).pipe(
-    filter(() => window.location.href.includes('manager'))
-  )
-);
+  isManager = this.authService.isManager;
 
   options: MenuButton[] = [
     { label: 'All', value: 'all' },
@@ -41,16 +37,19 @@ export class SidebarComponent {
   ] 
   setMenuSection(section: MenuSection) {
     this.menuService.setMenuSection(section);
+    this.authService.disableManagerMode();
   }
 
   navigateToOrder() {
     if (window.location.href.includes('customer')) {
       this.menuService.setMenuSection('empty');
     }
+    this.authService.enableManagerMode();
   }
 
   clearMenu() {
     this.menuService.setMenuSection('empty');
+    this.authService.disableManagerMode();
   }
 
   addBot() {

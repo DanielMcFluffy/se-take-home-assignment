@@ -20,6 +20,8 @@ npm start
 
 Then visit [http://localhost:4200](http://localhost:4200) in your browser.
 
+Alternatively, stackblitz demo: https://stackblitz.com/~/github.com/DanielMcFluffy/se-take-home-assignment
+
 ### Screenshots
 
 - Home Page![Home-page](./public/homePage.png)

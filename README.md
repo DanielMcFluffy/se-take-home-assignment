@@ -1,7 +1,5 @@
 ## McDonald's Bot Queue System
 
-> Try the live [demo here](http://rxjs.ng-book.com)
-
 ## Quick start
 
 ```bash
